@@ -1,0 +1,62 @@
+{
+  "tasks": [
+    {
+      "type": "cppbuild",
+      "label": "C/C++: gcc générer le fichier actif",
+      "command": "/usr/bin/gcc",
+      "args": [
+        "-g",
+        "-I${workspaceFolder}/src/include/",
+        "${workspaceFolder}/src/main.c",
+        "-lglfw",
+        "-lvulkan",
+        "-o",
+        "${workspaceFolder}/dist/app"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": [
+        "$gcc"
+      ],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "detail": "Tâche générée par le débogueur.",
+      "dependsOn": [
+        "Compile vertex shader",
+        "Compile fragment shader",
+      ]
+    },
+    {
+      "type": "shell",
+      "label": "Compile vertex shader",
+      "command": "/usr/bin/glslc",
+      "args": [
+        "shader.vert",
+        "-o",
+        "vertex.spv"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}/src/shaders/"
+      },
+      "group": "build"
+    },
+    {
+      "type": "shell",
+      "label": "Compile fragment shader",
+      "command": "/usr/bin/glslc",
+      "args": [
+        "shader.frag",
+        "-o",
+        "fragment.spv"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}/src/shaders/"
+      },
+      "group": "build"
+    }
+  ],
+  "version": "2.0.0"
+}

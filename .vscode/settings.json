@@ -1,0 +1,11 @@
+{
+  "files.associations": {
+    "*.module": "php",
+    "vulkan.h": "c",
+    "wayland-client.h": "c",
+    "wayland-client-core.h": "c",
+    "glfw3.h": "c",
+    "vulkan_wayland.h": "c",
+    "glfw3native.h": "c"
+  }
+}
