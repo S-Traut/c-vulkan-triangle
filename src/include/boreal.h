@@ -932,14 +932,21 @@ void brl_create_sync_objects(brl_app *app)
   app->fence_in_flight = fence;
 }
 
+void brl_recreate_swp(brl_app *app, VkPhysicalDevice physical_device)
+{
+  vkDeviceWaitIdle(app->vk_device);
+  brl_create_swp(app, physical_device);
+  brl_create_image_views(app);
+  brl_create_frame_buffer(app);
+}
+
 void brl_create_app(brl_app app)
 {
   printf("Welcome to Boreal!\n\n");
   glfwInit();
   glfwWindowHint(GLFW_CLIENT_API, GLFW_NO_API);
   glfwWindowHint(GLFW_RESIZABLE, GLFW_FALSE);
-  GLFWwindow *window = glfwCreateWindow(app.width, app.height, "Boreal", NULL, NULL);
-  app.window = window;
+  app.window = glfwCreateWindow(app.width, app.height, "BOREAL APP", NULL, NULL);
 
 #ifndef BRL_NDEBUG
   brl_list_available_extensions();

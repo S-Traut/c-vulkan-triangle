@@ -14,6 +14,10 @@ void loop(brl_app *app)
   vkResetFences(app->vk_device, 1, fences);
 
   uint32_t image_index;
+
+  VkDevice device = app->vk_device;
+  VkSwapchainKHR swp = app->vk_swp;
+
   vkAcquireNextImageKHR(app->vk_device, app->vk_swp, UINT64_MAX, app->sema_image_available, VK_NULL_HANDLE, &image_index);
 
   vkResetCommandBuffer(app->vk_command_buffer, 0);
